@@ -141,7 +141,7 @@ class _DoctorListState extends State<Drlist> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 90, 0, 245),
+        backgroundColor: Color(0xFF6574CF),
         title: _searching ? _buildSearchField() : _buildAppBarTitle(),
         actions: _buildAppBarActions(),
       ),

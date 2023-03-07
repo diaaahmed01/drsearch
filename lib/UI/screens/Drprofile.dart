@@ -1,6 +1,9 @@
 import 'package:drlist_bloc_app/Data/models/model.dart';
+import 'package:drlist_bloc_app/UI/widgets/appbar.dart';
+import 'package:drlist_bloc_app/constants/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:givestarreviews/givestarreviews.dart';
 
 class DoctorProfile extends StatelessWidget {
   final Usermodel doctor;
@@ -9,356 +12,369 @@ class DoctorProfile extends StatelessWidget {
 
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Scaffold(
-        body: SingleChildScrollView(
-          child: Column(
-            children: [
-              Container(
-                height: 130.0,
-                color: Color(0xFF6574CF),
-                child: Row(
+        child: Scaffold(
+      body: Container(
+        color: AppColors().maincolor,
+        child: SingleChildScrollView(
+          child: Column(children: [
+            myAppBar(
+                height: 103.0,
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                header: "Doctor Details",
+                leadingIcon: Icons.arrow_back,
+                rightIcon: Icons.chat_outlined),
+            Padding(
+                padding: const EdgeInsets.fromLTRB(5.0, 30.0, 0.0, 15.0),
+                child: CircleAvatar(
+                  backgroundImage: AssetImage('lib/assets/doctor.jpg'),
+                  radius: 70.0,
+                )),
+            Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(10, 80, 0, 0),
-                      child: Align(
-                        alignment: Alignment.centerLeft,
-                        child: IconButton(
-                          onPressed: () {
-                            Navigator.of(context).pop();
-                          },
-                          icon: Icon(Icons.arrow_back),
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
+                    Text(doctor.name,
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Color.fromARGB(255, 18, 18, 18),
+                            fontSize: 23.0)),
                     SizedBox(
-                      width: 20,
+                      width: 5,
                     ),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(10, 80, 0, 0),
-                      child: Text('Doctor Profile',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 20.0,
-                              fontWeight: FontWeight.w500)),
-                    ),
-                    SizedBox(
-                      width: 120,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(10, 80, 0, 0),
-                      child: Align(
-                        alignment: Alignment.centerLeft,
-                        child: IconButton(
-                          onPressed: () {},
-                          icon: Icon(Icons.location_on_outlined),
-                          color: Colors.white,
-                        ),
-                      ),
+                    Icon(
+                      Icons.verified_rounded,
+                      color: AppColors().secondcolor,
                     ),
                   ],
                 ),
-              ),
-              SizedBox(
-                height: 3.0,
-              ),
-              Row(
-                children: [
-                  IconButton(
-                    onPressed: () {},
-                    icon: Icon(Icons.videocam_outlined),
-                    color: Color(0xFF6574CF),
-                  ),
-                  Text(
-                    'Video Visit',
+                Text('Ophthalmologist',
                     style: TextStyle(
-                        color: Color(0xFF6574CF),
-                        fontSize: 17.0,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  SizedBox(
-                    width: 210.0,
-                  ),
-                  IconButton(
-                    onPressed: () {},
-                    icon: Icon(Icons.chat_outlined, size: 30.0),
-                    color: Color(0xFF6574CF),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 10.0,
-              ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(5.0, 10.0, 0.0, 0.0),
-                child: CircleAvatar(
-                    radius: 60.0,
-                    child: Image(image: AssetImage('assets/doctor87.png'))),
-              ),
-              SizedBox(
-                height: 20.0,
-              ),
-              Column(
-                children: [
-                  Text(doctor.name,
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
+                        color: Color.fromARGB(255, 38, 38, 38),
+                        fontSize: 18.0,
+                        fontWeight: FontWeight.w400)),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 10.0, 0, 10),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        Icons.star,
+                        color: AppColors().secondcolor,
+                      ),
+                      Text(
+                        '4.7',
+                        style: TextStyle(
                           color: Colors.black,
-                          fontSize: 23.0)),
-                  Text('Ophthalmologist',
-                      style: TextStyle(
-                          color: Colors.grey[600],
-                          fontSize: 17.0,
-                          fontWeight: FontWeight.w400)),
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(145.0, 0, 0, 0),
-                    child: Row(
-                      children: [
-                        IconButton(
-                          onPressed: () {},
-                          icon: Icon(Icons.star_rate),
-                          color: Color(0xFF6574CF),
+                          fontSize: 15.0,
                         ),
-                        Text(
-                          '4.7',
-                          style: TextStyle(
-                              color: Color(0xFF6574CF),
-                              fontSize: 17.0,
-                              fontWeight: FontWeight.bold),
-                        )
+                      )
+                    ],
+                  ),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(40, 20, 0, 0),
+                          child: Text('Alexandria',
+                              style: TextStyle(
+                                  color: Colors.black87, fontSize: 20.0)),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(40, 10, 0, 0),
+                          child: Text('Location',
+                              style: TextStyle(
+                                  color: Colors.grey[600], fontSize: 15.0)),
+                        ),
                       ],
                     ),
-                  ),
-                  Container(
-                    width: 330,
-                    child: TextField(
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(),
-                        hintText: 'About',
-                      ),
-                    ),
-                  ),
-                  Row(
-                    children: [
-                      Column(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.fromLTRB(60, 20, 0, 0),
-                            child: Text('Alexandria',
-                                style: TextStyle(
-                                    color: Colors.black87, fontSize: 20.0)),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.fromLTRB(60, 20, 0, 0),
-                            child: Text('Location',
-                                style: TextStyle(
-                                    color: Colors.grey[600], fontSize: 15.0)),
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        width: 40.0,
-                      ),
-                      Column(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.fromLTRB(60, 20, 0, 0),
-                            child: Text('20 Years',
-                                style: TextStyle(
-                                    color: Colors.black87, fontSize: 20.0)),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.fromLTRB(60, 20, 0, 0),
-                            child: Text('Experience',
-                                style: TextStyle(
-                                    color: Colors.grey[600], fontSize: 15.0)),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                  Text(
-                      '________________________________________________________',
-                      style: TextStyle(color: Colors.grey[300])),
-                  ElevatedButton.icon(
-                    icon: Icon(
-                      Icons.meeting_room,
-                      color: Colors.white,
-                      size: 20.0,
-                    ),
-                    label: Text('Available Timing'),
-                    onPressed: () {},
-                    style: ElevatedButton.styleFrom(
-                      primary: Color(0xFF6574CF),
-                      shape: new RoundedRectangleBorder(
-                        borderRadius: new BorderRadius.circular(5.0),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              SingleChildScrollView(
-                child: Container(
-                  width: 340,
-                  height: 120,
-                  decoration: BoxDecoration(
-                    color: Colors.grey[200],
-                    border: Border.all(color: Colors.grey),
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(5.0),
-                        child: Row(
-                          children: [
-                            Text('Experience&Qualifications',
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 13.0,
-                                )),
-                            SizedBox(
-                              width: 70.0,
-                            ),
-                            Container(
-                              height: 20.0,
-                              child: ElevatedButton(
-                                onPressed: () {},
-                                style: ElevatedButton.styleFrom(
-                                  primary: Colors.grey,
-                                  shape: new RoundedRectangleBorder(
-                                    borderRadius:
-                                        new BorderRadius.circular(5.0),
-                                  ),
-                                ),
-                                child: Text('Show More'),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        height: 10.0,
-                      ),
-                      Text('sjfvbkjdbfkjbdfjk', style: TextStyle(fontSize: 15)),
-                      SizedBox(
-                        height: 4.0,
-                      ),
-                      Text('sjfvbkjdbfkjbdfjk', style: TextStyle(fontSize: 15)),
-                      SizedBox(
-                        height: 4.0,
-                      ),
-                      Text('sjfvbkjdbfkjbdfjk', style: TextStyle(fontSize: 15))
-                    ],
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: 5.0,
-              ),
-              SingleChildScrollView(
-                child: Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(5.0),
-                      child: Padding(
-                        padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-                        child: Row(
-                          children: [
-                            Text('Reviews',
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 17.0,
-                                )),
-                            SizedBox(
-                              width: 210.0,
-                            ),
-                            Container(
-                              height: 20.0,
-                              child: ElevatedButton(
-                                onPressed: () {},
-                                style: ElevatedButton.styleFrom(
-                                  primary: Colors.grey,
-                                  shape: new RoundedRectangleBorder(
-                                    borderRadius:
-                                        new BorderRadius.circular(5.0),
-                                  ),
-                                ),
-                                child: Text('Show More'),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
                     Container(
-                      height: 130.0,
-                      child: ListView.separated(
-                        scrollDirection: Axis.horizontal,
-                        itemBuilder: (context, index) => buildCard(),
-                        separatorBuilder: (context, index) => SizedBox(
-                          width: 20.0,
+                      color: Colors.grey,
+                      width: 2,
+                      height: 60,
+                    ),
+                    Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(0, 20, 40, 0),
+                          child: Text('20 Years',
+                              style: TextStyle(
+                                  color: Colors.black87, fontSize: 20.0)),
                         ),
-                        itemCount: 10,
-                      ),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(0, 10, 40, 0),
+                          child: Text('Experience',
+                              style: TextStyle(
+                                  color: Colors.grey[600], fontSize: 15.0)),
+                        ),
+                      ],
                     ),
                   ],
                 ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget buildCard() => Container(
-        width: 180.0,
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(10.0),
-          border: Border.all(color: Colors.grey),
-        ),
-        child: Column(
-          children: [
-            CircleAvatar(
-                radius: 25.0,
-                child: Image(image: AssetImage('assets/doctor87.png'))),
-            Text('Name', style: TextStyle(fontSize: 15.0)),
+                SizedBox(
+                  height: 40,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                      width: 25,
+                    ),
+                    Text(
+                      'About',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                          color: Colors.black),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 18.0),
+                  child: Column(children: [
+                    Text(
+                      'Dr.Hosny is a cardiologist who actively serves patients at citra husada hospital jember and a chess player with a score 1 to 37 against his big rival hamo hasson ',
+                      style: TextStyle(
+                          fontSize: 15, color: Color.fromARGB(255, 83, 83, 83)),
+                    ),
+                  ]),
+                ),
+                SizedBox(
+                  height: 30,
+                ),
+                ElevatedButton.icon(
+                  icon: Icon(
+                    Icons.watch_later_rounded,
+                    color: Colors.white,
+                    size: 20.0,
+                  ),
+                  label: Text(
+                    'Available Timing',
+                    style: TextStyle(fontSize: 17),
+                  ),
+                  onPressed: () {},
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColors().secondcolor,
+                    shape: new RoundedRectangleBorder(
+                      borderRadius: new BorderRadius.circular(3.0),
+                    ),
+                  ),
+                ),
+              ],
+            ),
             Padding(
-              padding: const EdgeInsets.fromLTRB(65, 0, 0, 0),
-              child: Row(
+              padding: const EdgeInsets.only(top: 30.0, left: 15),
+              child: Container(
+                width: 370,
+                color: AppColors().maincolor,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text('STATS',
+                            style: TextStyle(
+                                color: Color.fromARGB(255, 0, 0, 0),
+                                fontSize: 16.0,
+                                fontWeight: FontWeight.bold)),
+                        TextButton(
+                          onPressed: () {},
+                          child: Text(
+                            'more',
+                            style: TextStyle(
+                                fontSize: 15, color: AppColors().secondcolor),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Icon(
+                          Icons.school_outlined,
+                          color: AppColors().secondcolor,
+                        ),
+                        SizedBox(width: 10),
+                        Text('studied at Alexandria University',
+                            style: TextStyle(fontSize: 15)),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 4.0,
+                    ),
+                    Row(
+                      children: [
+                        Icon(
+                          Icons.local_hospital_outlined,
+                          color: AppColors().secondcolor,
+                        ),
+                        SizedBox(width: 10),
+                        Text('Practicing at NYU langone Hospitals',
+                            style: TextStyle(fontSize: 15)),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 4.0,
+                    ),
+                    Row(
+                      children: [
+                        Icon(
+                          Icons.person_2_outlined,
+                          color: AppColors().secondcolor,
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Text('324 Happy Patients',
+                            style: TextStyle(fontSize: 15)),
+                      ],
+                    )
+                  ],
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 5.0,
+            ),
+            SingleChildScrollView(
+              child: Column(
                 children: [
-                  Icon(
-                    Icons.star_rate,
-                    color: Color(0xFF6574CF),
-                    size: 15.0,
+                  Padding(
+                    padding: const EdgeInsets.all(5.0),
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(left: 10.0),
+                            child: Text('Reviews',
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 18.0,
+                                    fontWeight: FontWeight.bold)),
+                          ),
+                          SizedBox(
+                            width: 210.0,
+                          ),
+                          TextButton(
+                            onPressed: () {
+                              Navigator.pushNamed(
+                                context,
+                                '/reviews',
+                                arguments: doctor.id,
+                              );
+                            },
+                            child: Text(
+                              'show All',
+                              style: TextStyle(
+                                  fontSize: 15, color: AppColors().secondcolor),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
-                  Icon(
-                    Icons.star_rate,
-                    color: Color(0xFF6574CF),
-                    size: 15.0,
-                  ),
-                  Icon(
-                    Icons.star_rate,
-                    color: Color(0xFF6574CF),
-                    size: 15.0,
-                  ),
-                  Icon(
-                    Icons.star_rate,
-                    color: Color(0xFF6574CF),
-                    size: 15.0,
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 10.0, left: 10.0),
+                    child: Container(
+                      height: 120.0,
+                      child: ListView.separated(
+                        scrollDirection: Axis.horizontal,
+                        itemBuilder: (context, index) => buildReviewCard(),
+                        separatorBuilder: (context, index) => SizedBox(
+                          width: 15.0,
+                        ),
+                        itemCount: 4,
+                      ),
+                    ),
                   ),
                 ],
               ),
             ),
-            Text('Prfectooooo',
-                style: TextStyle(
-                    fontSize: 20.0,
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold)),
-          ],
+          ]),
+        ),
+      ),
+    ));
+  }
+
+  Widget buildReviewCard() => Container(
+        width: 300.0,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(10.0),
+          border: Border.all(
+            width: 2,
+            color: Color.fromARGB(255, 171, 200, 240).withOpacity(0.4),
+            style: BorderStyle.solid,
+          ),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.only(top: 10.0),
+          child: Row(
+            children: [
+              SizedBox(
+                width: 10,
+              ),
+              Column(
+                children: [
+                  CircleAvatar(
+                    radius: 25.0,
+                    backgroundImage: AssetImage('lib/assets/doctor.jpg'),
+                  ),
+                  SizedBox(
+                    height: 15,
+                  ),
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.star,
+                        color: AppColors().secondcolor,
+                      ),
+                      Text(
+                        '4.7',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 15.0,
+                        ),
+                      )
+                    ],
+                  )
+                ],
+              ),
+              SizedBox(
+                width: 20,
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('Kareem',
+                      style: TextStyle(
+                          fontSize: 17.0, fontWeight: FontWeight.bold)),
+                  SizedBox(
+                    height: 15,
+                  ),
+                  Container(
+                    width: 200,
+                    child: Text(
+                        'Dr. Hosny is so kind i feel safe and always give clear explanation',
+                        style: TextStyle(
+                          fontSize: 15.0,
+                          color: Colors.black,
+                        )),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       );
 }

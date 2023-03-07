@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 
 class AppColors {
   Color maincolor = Color.fromARGB(255, 238, 244, 251);
-  Color secondcolor = Color.fromARGB(255, 107, 98, 232);
+  Color secondcolor = Color(0xFF6574CF);
 
   static MediaQueryData? mediaQueryData;
   static double? screenWidth;

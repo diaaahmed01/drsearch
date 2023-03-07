@@ -9,6 +9,8 @@ import '../../Data/repos/WebService.dart';
 import '../../Data/repos/repostory.dart';
 
 import '../screens/allDoctors.dart';
+import '../screens/reviews.dart';
+import '../screens/testappbar.dart';
 
 class AppRouter {
   final doctorListCubit = DoctorListCubit(UserRepository(WebService()));
@@ -33,22 +35,22 @@ class AppRouter {
                   ),
                 ));
 
-      // case '/reviews':
-      //   final id = routeSettings.arguments as String;
-      //   return MaterialPageRoute(
-      //       builder: (_) => MultiBlocProvider(
-      //             providers: [
-      //               BlocProvider.value(
-      //                 value: reviewListCubit,
-      //               ),
-      //               BlocProvider.value(
-      //                 value: doctorListCubit,
-      //               ),
-      //             ],
-      //             child: reviewsList(
-      //               id: id,
-      //             ),
-      //           ));
+      case '/reviews':
+        final id = routeSettings.arguments as String;
+        return MaterialPageRoute(
+            builder: (_) => MultiBlocProvider(
+                  providers: [
+                    BlocProvider.value(
+                      value: reviewListCubit,
+                    ),
+                    BlocProvider.value(
+                      value: doctorListCubit,
+                    ),
+                  ],
+                  child: Reviews(
+                    id: id,
+                  ),
+                ));
 
       default:
         return null;
